@@ -1,0 +1,5 @@
+name: Job
+version: '${project.version}'
+main: fr.tiltech.job.Main
+api-version: 1.19
+description: Plugin job
