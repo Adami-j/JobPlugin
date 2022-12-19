@@ -1,17 +1,20 @@
 package fr.tiltech.job;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
-
+        System.out.println(ChatColor.GREEN + "Enable plugin");
+        Bukkit.getPluginManager().registerEvents(new EssListeners(), this);
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        System.out.println(ChatColor.RED + "Disable plugin");
     }
+
 }
