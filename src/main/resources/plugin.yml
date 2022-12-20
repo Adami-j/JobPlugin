@@ -6,4 +6,6 @@ description: Plugin job
 commands:
   test:
     description: Test command
-    test: test
+  reload:
+    description: reload plugin
+    permission: job.reload
