@@ -13,7 +13,7 @@ public class Mineur extends Metier{
     @Override
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        player.sendMessage("Salut t'es un mineur sale chien");
+        player.sendMessage("Salut t'es un mineur");
     }
 
 
