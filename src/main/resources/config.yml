@@ -1,0 +1,22 @@
+configversion: 1.0
+#-----------------------------#
+#           JobPlugin         #
+#         by ADAMI Julien     #
+#       and MATHIOU Alexi     #
+#-----------------------------#
+
+#placeholders :
+#{job_prefix} - The job prefix
+#{job_suffix} - The job suffix
+#{job_name} - The job name without any color or anything
+
+#Example of creating a job :
+#
+#Jobs:
+# name: Fighter
+#   salary: 1050      #salary each 24 hours
+#   min_value: 0.15       #minimum value of money earned by breaking blocks
+#   max_value: 0.20       #maximum value of money earned by breaking blocks
+#
+
+Jobs:
