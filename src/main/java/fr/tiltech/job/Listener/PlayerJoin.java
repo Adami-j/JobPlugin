@@ -18,5 +18,8 @@ public class PlayerJoin implements Listener {
         if (!player.isOp()) {
             player.sendMessage(ChatColor.GREEN + "[3iLTechServ] Bienvenue " + player.getName());
         }
+        if (!player.hasPermission("") {
+            player.sendMessage("§cTu n'as pas de métier ! Choisis-en un parmi la liste :");
+        }
     }
 }
