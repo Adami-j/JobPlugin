@@ -11,7 +11,7 @@ public final class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         System.out.println(ChatColor.GREEN + "Enable plugin");
-        Bukkit.getPluginManager().registerEvents(new EssListeners(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerJoin(), this);
     }
 
     @Override

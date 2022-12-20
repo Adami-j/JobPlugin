@@ -8,13 +8,15 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class EssListeners implements Listener {
+import fr.tiltech.job.Main;
+
+public class PlayerJoin implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        player.getInventory().clear();
-        player.getInventory().addItem(new ItemStack(Material.ECHO_SHARD));
-        System.out.println("BITEEEEEEEEEEEEEEEEE");
+        if (!player.isOp()) {
+            player.sendMessage(ChatColor.GREEN + "[3iLTechServ] Bienvenue " + player.getName());
+        }
     }
 }
