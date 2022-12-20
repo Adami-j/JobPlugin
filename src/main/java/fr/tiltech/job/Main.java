@@ -8,10 +8,18 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin {
 
+    private static boolean papiEnabled = false;
+
     @Override
     public void onEnable() {
         System.out.println(ChatColor.GREEN + "Enable plugin");
         Bukkit.getPluginManager().registerEvents(new PlayerJoin(), this);
+
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            this.getLogger().info("PlaceholderAPI detected.");
+            Main.papiEnabled = true;
+        }
+
     }
 
     @Override
