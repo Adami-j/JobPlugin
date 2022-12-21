@@ -2,9 +2,11 @@ package fr.tiltech.job.metier;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.plugin.java.JavaPlugin;
 
-public abstract class Metier {
+public class Metier extends JavaPlugin implements Listener {
 
     private int niveau;
     private Player player;
@@ -30,6 +32,9 @@ public abstract class Metier {
         this.player = player;
     }
 
-    public abstract void onJoin(PlayerJoinEvent event);
+    @EventHandler
+    public void onJoin(PlayerJoinEvent event){
+
+    }
 
 }

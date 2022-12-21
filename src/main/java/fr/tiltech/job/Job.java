@@ -21,9 +21,9 @@ public final class Job extends JavaPlugin {
     @Override
     public void onEnable() {
         // Enable Configuration
-        createCustomConfig();
         config.options().copyDefaults(true);
         saveConfig();
+        createCustomConfig();
 
 
         System.out.println(ChatColor.GREEN + "Enable plugin");
