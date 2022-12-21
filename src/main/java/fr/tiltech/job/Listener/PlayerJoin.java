@@ -9,7 +9,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.tiltech.job.Main;
+import fr.tiltech.job.Job;
 
 public class PlayerJoin implements Listener {
 
@@ -26,6 +26,8 @@ public class PlayerJoin implements Listener {
                 player.sendMessage("§7- §aFermier\n");
                 player.sendMessage("§8> §cClique sur le métier que tu voudrais exercer.");
             }
+        } else {
+            player.sendMessage("Salut mke ekfkdsqdg");
         }
     }
 }

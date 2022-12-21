@@ -2,20 +2,26 @@ package fr.tiltech.job;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.event.Listener;
-import org.bukkit.plugin.Plugin;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import fr.tiltech.job.Listener.PlayerJoin;
 
-public final class Main extends JavaPlugin {
+import java.io.File;
+import java.io.IOException;
+
+public final class Job extends JavaPlugin {
     FileConfiguration config = getConfig();
+    private File customConfigFile;
+    private FileConfiguration customConfig;
 
     private static boolean papiEnabled = false;
 
     @Override
     public void onEnable() {
         // Enable Configuration
+        createCustomConfig();
         config.options().copyDefaults(true);
         saveConfig();
 
@@ -25,7 +31,7 @@ public final class Main extends JavaPlugin {
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             this.getLogger().info("PlaceholderAPI detected.");
-            Main.papiEnabled = true;
+            Job.papiEnabled = true;
         } else {
             this.getLogger().info("PlaceholderAPI not detected.");
         }
@@ -35,6 +41,26 @@ public final class Main extends JavaPlugin {
     @Override
     public void onDisable() {
         System.out.println(ChatColor.RED + "Disable plugin");
+    }
+
+    public FileConfiguration getCustomConfig() {
+        return this.customConfig;
+    }
+
+    private void createCustomConfig() {
+        customConfigFile = new File(getDataFolder(), "custom.yml");
+        if (!customConfigFile.exists()) {
+            customConfigFile.getParentFile().mkdirs();
+            saveResource("custom.yml", false);
+        }
+
+        customConfig = new YamlConfiguration();
+
+        try {
+            customConfig.load(customConfigFile);
+        } catch (IOException | InvalidConfigurationException e) {
+            e.printStackTrace();
+        }
     }
 
 }

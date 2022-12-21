@@ -1,6 +1,6 @@
-name: Job
+name: JobPlugin
 version: '${project.version}'
-main: fr.tiltech.job.Main
+main: fr.tiltech.job.Job
 api-version: 1.19
 description: Plugin job
 commands:

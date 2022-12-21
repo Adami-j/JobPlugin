@@ -7,7 +7,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 public abstract class Metier {
 
     private int niveau;
-
     private Player player;
 
     public Metier(int niveau, Player player) {
