@@ -73,7 +73,7 @@ public class PlayerJoin implements Listener {
                 player.spigot().sendMessage(chim);
                 player.spigot().sendMessage(ferm);*/
                 
-                for (int i = 0; i < metiers.length; i++ {
+                for (int i = 0; i < metiers.length; i++) {
                     TextComponent a = new TextComponent("§8- ");
                     TextComponent sub = new TextComponent(metiers[i]);
                 }
