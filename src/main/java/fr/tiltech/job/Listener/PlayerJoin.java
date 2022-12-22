@@ -19,11 +19,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 import fr.tiltech.job.Job;
 
 public class PlayerJoin implements Listener {
+    
+    private ArrayList<Metier> metiers = new ArrayList<Metier>();
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
 
         Player player = event.getPlayer();
+        
 
         /*TextComponent testComp = new TextComponent("Test 1 premiere ligne");
         testComp.setColor(ChatColor.GOLD);
@@ -68,6 +71,11 @@ public class PlayerJoin implements Listener {
                 player.spigot().sendMessage(comb);
                 player.spigot().sendMessage(chim);
                 player.spigot().sendMessage(ferm);
+                
+                for (int i = 0; i < metiers.length; i++ {
+                    TextComponent a = new TextComponent("§8- ");
+                    TextComponent sub = new TextComponent(metiers[i]);
+                }
 
 
 
