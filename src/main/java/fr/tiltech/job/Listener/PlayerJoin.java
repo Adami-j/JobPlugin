@@ -60,7 +60,7 @@ public class PlayerJoin implements Listener {
                 sous_chim.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("§7Choisir le métier de §oChimiste")));
                 sous_ferm.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("§7Choisir le métier de §oFermier")));*/
                 
-                sous_min.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/im_min_rn"));
+                sous_min.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/job Miner"));
                 /*sous_comb.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, ""));
                 sous_chim.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, ""));
                 sous_ferm.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, ""));*/
