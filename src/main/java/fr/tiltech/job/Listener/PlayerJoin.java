@@ -33,7 +33,7 @@ public class PlayerJoin implements Listener {
         TextComponent sub = new TextComponent("T'es un  ?");
         sub.setColor(ChatColor.AQUA);
         sub.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Click mon reuf tqt c'est R")));
-        sub.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.google.com/search?q=bite&rlz=1C1CHBD_frFR1004FR1004&sxsrf=ALiCzsZ_lz3PVJNBcByPTEnqa_VJM2s1Iw:1671651293572&source=lnms&tbm=isch&sa=X&ved=2ahUKEwidr6qsuov8AhVOasAKHeiwBacQ_AUoAXoECAEQAw&biw=3440&bih=1289&dpr=1"));
+        sub.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://google.fr"));
         testComp.addExtra(sub);
         testComp.addExtra("Rep ?");
         player.spigot().sendMessage(testComp);*/
