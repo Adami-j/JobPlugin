@@ -1,5 +1,6 @@
 package fr.tiltech.job;
 
+import fr.tiltech.job.metier.Metier;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -10,6 +11,7 @@ import fr.tiltech.job.Listener.PlayerJoin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 public final class Job extends JavaPlugin {
     FileConfiguration config = getConfig();

@@ -1,5 +1,6 @@
 package fr.tiltech.job.Reload;
 
+import fr.tiltech.job.Job;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,8 +11,8 @@ import org.bukkit.plugin.PluginDescriptionFile;
 
 public class ReloadCommand implements CommandExecutor {
 
-    public static Plugin plugin;
-    public ReloadCommand(Plugin plugin) {
+    public static Job plugin;
+    public ReloadCommand(Job plugin) {
         this.plugin = plugin;
     }
 

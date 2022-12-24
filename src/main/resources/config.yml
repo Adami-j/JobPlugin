@@ -11,12 +11,18 @@ configversion: 1.0
 #{job_name} - The job name without any color or anything
 
 #Example of creating a job :
-#
-#Jobs:
-# name: Fighter
-#   salary: 1050      #salary each 24 hours
-#   min_value: 0.15       #minimum value of money earned by breaking blocks
-#   max_value: 0.20       #maximum value of money earned by breaking blocks
+# jobs:
+#   fighter:
+#     name: Fighter
+#     salary: 1050      #salary each 24 hours
+#     min_value: 0.15       #minimum value of money earned by breaking blocks
+#     max_value: 0.20       #maximum value of money earned by breaking blocks
 #
 
-Jobs:
+jobs:
+  fighter:
+    name: Fighter
+    salary: 1000
+    min_value: 0.15
+    max_value: 0.20
+
