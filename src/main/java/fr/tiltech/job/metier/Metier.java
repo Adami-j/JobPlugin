@@ -22,25 +22,4 @@ import java.util.Objects;
 public class Metier extends JavaPlugin implements CommandExecutor {
 
     private ArrayList<Metier> jobs = new ArrayList<>();
-
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        Player p = (Player) sender;
-
-        if(command.getName().equalsIgnoreCase("job")) {
-            if (args.length == 0) {
-                p.sendMessage(ChatColor.RED + "Please specify a job.");
-                return true;
-            }
-            if (args.length == 1) {
-                p.sendMessage("C'est ok");
-                return false;
-            }
-            if (args.length >= 2) {
-                p.sendMessage(ChatColor.RED + "Too much arguments");
-                return true;
-            }
-        }
-        return false;
-    }
 }
