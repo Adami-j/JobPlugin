@@ -1,5 +1,6 @@
 package fr.tiltech.job;
 
+import fr.tiltech.job.Command.JobCommand;
 import fr.tiltech.job.metier.Jobs;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -32,6 +33,8 @@ public class Job extends JavaPlugin {
 
         System.out.println(ChatColor.GREEN + "Enable plugin");
         Bukkit.getPluginManager().registerEvents(new PlayerJoin(), this);
+        getCommand("job").setExecutor(new JobCommand());
+        getCommand("jobs").setExecutor(new JobCommand());
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             this.getLogger().info("PlaceholderAPI detected.");
@@ -65,37 +68,6 @@ public class Job extends JavaPlugin {
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
         }
-    }
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (command.getName().equalsIgnoreCase("job")) {
-            if (sender instanceof Player) {
-                Player p = (Player) sender;
-                if (args.length == 0) {
-                    p.sendMessage("" + ChatColor.BOLD + ChatColor.RED + "You must specify a job.");
-                    return true;
-                }
-                if (args.length == 1) {
-                    if (args[0].equalsIgnoreCase("miner")) {
-                        if (!p.hasPermission("jobplugin.job.miner")) {
-                            p.sendMessage(ChatColor.BLUE + "Congratulations ! " + ChatColor.GREEN + "You're now a " + ChatColor.ITALIC + ChatColor.BLUE + args[0]);
-                            p.sendMessage("ton ping " + String.valueOf(p.getPing()));
-                            p.isPermissionSet("jobplugin.job.miner");
-                        } else {
-                            p.sendMessage(ChatColor.RED + "§oYou are already a Miner");
-                        }
-                        return true;
-                    }
-                }
-                if (args.length >= 2) {
-                    p.sendMessage("" + ChatColor.BOLD + ChatColor.RED + "Too much arguments.");
-                    return true;
-                }
-                return true;
-            }
-            return true;
-        }
-        return false;
     }
 
 }

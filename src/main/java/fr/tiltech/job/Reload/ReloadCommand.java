@@ -8,8 +8,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
+import org.bukkit.plugin.java.JavaPlugin;
 
-public class ReloadCommand implements CommandExecutor {
+public class ReloadCommand extends JavaPlugin implements CommandExecutor {
 
     public static Job plugin;
     public ReloadCommand(Job plugin) {

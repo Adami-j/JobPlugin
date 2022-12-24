@@ -6,8 +6,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.ArrayList;
 
 public enum Jobs {
-    MINER,
-    FIGHTER,
-    FARMER,
-    CHEMIST
+    Miner,
+    Fighter,
+    Farmer,
+    Chemist
 }
