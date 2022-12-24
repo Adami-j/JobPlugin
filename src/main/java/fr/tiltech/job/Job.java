@@ -1,6 +1,6 @@
 package fr.tiltech.job;
 
-import fr.tiltech.job.metier.Metier;
+import fr.tiltech.job.metier.Jobs;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -14,7 +14,6 @@ import fr.tiltech.job.Listener.PlayerJoin;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
 
 public class Job extends JavaPlugin {
     FileConfiguration config = getConfig();
@@ -73,17 +72,23 @@ public class Job extends JavaPlugin {
             if (sender instanceof Player) {
                 Player p = (Player) sender;
                 if (args.length == 0) {
-                    p.sendMessage(ChatColor.RED + "You must specify a job.");
+                    p.sendMessage("" + ChatColor.BOLD + ChatColor.RED + "You must specify a job.");
                     return true;
                 }
                 if (args.length == 1) {
                     if (args[0].equalsIgnoreCase("miner")) {
-                        p.sendMessage(ChatColor.BLUE + "Congratulations ! " + ChatColor.GREEN + "You're now a " + ChatColor.ITALIC + ChatColor.BLUE + args[0]);
+                        if (!p.hasPermission("jobplugin.job.miner")) {
+                            p.sendMessage(ChatColor.BLUE + "Congratulations ! " + ChatColor.GREEN + "You're now a " + ChatColor.ITALIC + ChatColor.BLUE + args[0]);
+                            p.sendMessage("ton ping " + String.valueOf(p.getPing()));
+                            p.isPermissionSet("jobplugin.job.miner");
+                        } else {
+                            p.sendMessage(ChatColor.RED + "§oYou are already a Miner");
+                        }
                         return true;
                     }
                 }
                 if (args.length >= 2) {
-                    p.sendMessage(ChatColor.RED + "Too much arguments");
+                    p.sendMessage("" + ChatColor.BOLD + ChatColor.RED + "Too much arguments.");
                     return true;
                 }
                 return true;
