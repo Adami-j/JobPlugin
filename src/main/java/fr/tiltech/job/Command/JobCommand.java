@@ -13,6 +13,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import net.md_5.bungee.api.chat.TextComponent;
+import org.checkerframework.checker.units.qual.C;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -69,28 +70,18 @@ public class JobCommand implements CommandExecutor {
             if (sender instanceof Player) {
                 Player p = (Player) sender;
                 int i = 0;
-                /*for (Jobs job : Jobs.values()) {
-                    TextComponent tc_up = new TextComponent("§8- ");
-                    TextComponent tc_down = new TextComponent(colors.get(i)+String.valueOf(job));
-                    tc_down.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Choisir le métier "+ colors.get(i)+String.valueOf(job))));
-                    tc_down.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "msg"));
-                    tc_up.addExtra(tc_down);
-                    p.spigot().sendMessage(tc_up);
-                    i++;
-                }*/
-
+                p.sendMessage("§4» §7§oHere the list of jobs:");
                 for (String string : plugin.getConfig().getConfigurationSection("jobs").getKeys(false)) {
                     String s = plugin.getConfig().getConfigurationSection("jobs").getString(string + ".name");
-                    String cmd = "job "+s;
-                    TextComponent tc1 = new TextComponent("§8- ");
-                    TextComponent tc2 = new TextComponent(colors.get(i)+s);
-                    tc2.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Choose this job : "+colors.get(i)+s+", §7§oSalary : "+ getSalary(string) +"§a$")));
-                    tc2.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, cmd));
+                    TextComponent tc1 = new TextComponent(" §4"+(i+1)+". §l");
+                    TextComponent tc2 = new TextComponent(ChatColor.RED+s);
+                    tc2.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("§7§oClick to choose the job of "+s)));
+                    tc2.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "job "+s));
                     tc1.addExtra(tc2);
                     p.spigot().sendMessage(tc1);
                     i++;
                 }
-
+                p.sendMessage("§4» §7§oChoose a job by clicking on it.");
                 return true;
             }
             return true;

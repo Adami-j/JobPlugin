@@ -11,8 +11,8 @@ commands:
     permission: jobplugin.reload
   jobs:
     description: show all available jobs
-    permission: jobplugin.jobss
-    aliases: [j]
+    permission: jobplugin.jobs
+    aliases: [js]
     usage: /<command>
   job:
     description: use this command with an argument (a job)

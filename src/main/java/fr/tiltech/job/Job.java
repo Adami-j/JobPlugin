@@ -1,6 +1,7 @@
 package fr.tiltech.job;
 
 import fr.tiltech.job.Command.JobCommand;
+import fr.tiltech.job.Reload.ReloadCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -31,6 +32,7 @@ public class Job extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlayerJoin(), this);
         getCommand("job").setExecutor(new JobCommand(this));
         getCommand("jobs").setExecutor(new JobCommand(this));
+        getCommand("jpr").setExecutor(new ReloadCommand(this));
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             this.getLogger().info("PlaceholderAPI detected.");

@@ -26,13 +26,13 @@ public class PlayerJoin implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player p = event.getPlayer();
-        for (String string : plugin.getConfig().getConfigurationSection("jobs").getKeys(false)) {
-            if (!p.hasPermission("jobplugin.job."+string)) {
+        if (!p.isOp()) {
+            if (!p.hasPermission("jobplugin.job")) {
+                p.sendMessage("§4» §cYou don't have a job!");
                 p.performCommand("jobs");
-                p.sendMessage("bg");
-            } else {
-                p.sendMessage("t'as deja un metier");
             }
+        } else {
+            p.sendMessage("§cHello operator. You already have a §ojob.");
         }
     }
 }

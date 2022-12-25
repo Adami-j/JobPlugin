@@ -1,17 +1,18 @@
 package fr.tiltech.job.Reload;
 
 import fr.tiltech.job.Job;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class ReloadCommand extends JavaPlugin implements CommandExecutor {
 
+    private final Job plugin;
+
+    public ReloadCommand(Job plugin) {
+        this.plugin = plugin;
+    }
 
     /**
      * Executes the given command, returning its success.
@@ -27,6 +28,11 @@ public class ReloadCommand extends JavaPlugin implements CommandExecutor {
      */
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if (command.getName().equalsIgnoreCase("jpr")) {
+            plugin.reloadConfig();
+            sender.sendMessage("§aJobplugin Reloaded.");
+            return true;
+        }
         return false;
     }
 }
