@@ -20,9 +20,24 @@ configversion: 1.0
 #
 
 jobs:
+  miner:
+    name: Miner
+    salary: 1200
+    min_value: 0.12
+    max_value: 0.22
   fighter:
     name: Fighter
     salary: 1000
     min_value: 0.15
     max_value: 0.20
+  farmer:
+    name: Farmer
+    salary: 1050
+    min_value: 0.13
+    max_value: 0.18
+  chemist:
+    name: Chemist
+    salary: 1100
+    min_value: 0.19
+    max_value: 0.34
 

@@ -18,8 +18,6 @@ import java.io.IOException;
 
 public class Job extends JavaPlugin {
     FileConfiguration config = getConfig();
-    private File customConfigFile;
-    private FileConfiguration customConfig;
 
     private static boolean papiEnabled = false;
 
@@ -28,13 +26,12 @@ public class Job extends JavaPlugin {
         // Enable Configuration
         config.options().copyDefaults(true);
         saveConfig();
-        createCustomConfig();
 
 
         System.out.println(ChatColor.GREEN + "Enable plugin");
         Bukkit.getPluginManager().registerEvents(new PlayerJoin(), this);
-        getCommand("job").setExecutor(new JobCommand());
-        getCommand("jobs").setExecutor(new JobCommand());
+        getCommand("job").setExecutor(new JobCommand(this));
+        getCommand("jobs").setExecutor(new JobCommand(this));
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             this.getLogger().info("PlaceholderAPI detected.");
@@ -48,26 +45,6 @@ public class Job extends JavaPlugin {
     @Override
     public void onDisable() {
         System.out.println(ChatColor.RED + "Disable plugin");
-    }
-
-    public FileConfiguration getCustomConfig() {
-        return this.customConfig;
-    }
-
-    private void createCustomConfig() {
-        customConfigFile = new File(getDataFolder(), "custom.yml");
-        if (!customConfigFile.exists()) {
-            customConfigFile.getParentFile().mkdirs();
-            saveResource("custom.yml", false);
-        }
-
-        customConfig = new YamlConfiguration();
-
-        try {
-            customConfig.load(customConfigFile);
-        } catch (IOException | InvalidConfigurationException e) {
-            e.printStackTrace();
-        }
     }
 
 }

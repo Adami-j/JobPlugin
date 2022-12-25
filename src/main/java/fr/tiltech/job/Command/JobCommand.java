@@ -1,5 +1,7 @@
 package fr.tiltech.job.Command;
 
+import fr.tiltech.job.Job;
+import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.hover.content.Text;
@@ -7,6 +9,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import fr.tiltech.job.metier.Jobs;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -15,10 +18,21 @@ import net.md_5.bungee.api.chat.TextComponent;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
+import java.util.Set;
 
 public class JobCommand implements CommandExecutor {
 
-    ArrayList<ChatColor> colors = new ArrayList<>(Arrays.asList(ChatColor.GOLD, ChatColor.RED, ChatColor.YELLOW, ChatColor.LIGHT_PURPLE));
+    private final Job plugin;
+    public JobCommand(Job plugin) {
+        this.plugin = plugin;
+    }
+
+    ArrayList<ChatColor> colors = new ArrayList<>(Arrays.asList(
+            ChatColor.GOLD,
+            ChatColor.RED,
+            ChatColor.YELLOW,
+            ChatColor.LIGHT_PURPLE));
 
     /**
      * Executes the given command, returning its success.
@@ -56,7 +70,7 @@ public class JobCommand implements CommandExecutor {
             if (sender instanceof Player) {
                 Player p = (Player) sender;
                 int i = 0;
-                for (Jobs job : Jobs.values()) {
+                /*for (Jobs job : Jobs.values()) {
                     TextComponent tc_up = new TextComponent("§8- ");
                     TextComponent tc_down = new TextComponent(colors.get(i)+String.valueOf(job));
                     tc_down.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Choisir le métier "+ colors.get(i)+String.valueOf(job))));
@@ -64,11 +78,36 @@ public class JobCommand implements CommandExecutor {
                     tc_up.addExtra(tc_down);
                     p.spigot().sendMessage(tc_up);
                     i++;
+                }*/
+
+                for (String string : plugin.getConfig().getConfigurationSection("jobs").getKeys(false)) {
+                    String s = plugin.getConfig().getConfigurationSection("jobs").getString(string + ".name");
+                    String cmd = "job "+s;
+                    TextComponent tc1 = new TextComponent("§8- ");
+                    TextComponent tc2 = new TextComponent(colors.get(i)+s);
+                    tc2.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Choose this job : "+colors.get(i)+s+", §7§oSalary : "+ getSalary(string) +"§a$")));
+                    tc2.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, cmd));
+                    tc1.addExtra(tc2);
+                    p.spigot().sendMessage(tc1);
+                    i++;
                 }
+
                 return true;
             }
             return true;
         }
         return false;
+    }
+
+    public int getSalary(String str) {
+        return plugin.getConfig().getInt("jobs."+str+".salary");
+    }
+
+    public double getMinValue(String str) {
+        return plugin.getConfig().getInt("jobs."+str+".min_value");
+    }
+
+    public double getMaxValue(String str) {
+        return plugin.getConfig().getInt("jobs."+str+".max_value");
     }
 }
