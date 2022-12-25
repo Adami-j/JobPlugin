@@ -11,7 +11,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import fr.tiltech.job.metier.Jobs;
 import org.bukkit.plugin.java.JavaPlugin;
 import net.md_5.bungee.api.chat.TextComponent;
 

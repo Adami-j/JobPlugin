@@ -12,11 +12,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class ReloadCommand extends JavaPlugin implements CommandExecutor {
 
-    public static Job plugin;
-    public ReloadCommand(Job plugin) {
-        this.plugin = plugin;
-    }
-
 
     /**
      * Executes the given command, returning its success.

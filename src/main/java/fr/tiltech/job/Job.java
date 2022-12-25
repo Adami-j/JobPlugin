@@ -1,7 +1,6 @@
 package fr.tiltech.job;
 
 import fr.tiltech.job.Command.JobCommand;
-import fr.tiltech.job.metier.Jobs;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

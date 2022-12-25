@@ -1,5 +1,6 @@
 package fr.tiltech.job.Listener;
 
+import fr.tiltech.job.Command.JobCommand;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
@@ -20,34 +21,18 @@ import fr.tiltech.job.Job;
 
 public class PlayerJoin implements Listener {
 
+    private static Job plugin;
+
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-
-        Player player = event.getPlayer();
-
-        if (!player.isOp()) {
-            if (!player.hasPermission("")) {
-
-                player.sendMessage("§8> §cTu n'as pas de métier ! Choisis-en un parmi la liste :");
-
-                player.sendMessage("§7- §aMineur");
-                TextComponent min = new TextComponent("§8- ");
-                TextComponent sous_min = new TextComponent("§7Mineur");
-                sous_min.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("§7Choisir le métier de §oMineur")));
-                sous_min.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "job Mineur"));
-                min.addExtra(sous_min);
-                player.spigot().sendMessage(min);
-
-
-
-                //player.sendMessage("§8> §cClique sur le métier que tu voudrais exercer.");
+        Player p = event.getPlayer();
+        for (String string : plugin.getConfig().getConfigurationSection("jobs").getKeys(false)) {
+            if (!p.hasPermission("jobplugin.job."+string)) {
+                p.performCommand("jobs");
+                p.sendMessage("bg");
+            } else {
+                p.sendMessage("t'as deja un metier");
             }
-        } else {
-            player.sendMessage("Salut mke ekfkdsqdg");
         }
-    }
-
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        return false;
     }
 }
