@@ -138,8 +138,4 @@ public class JobCommand implements CommandExecutor {
         return plugin.getConfig().getInt("jobs."+str+".max_value");
     }
 
-    public ArrayList<String> getJobs() {
-        return jobs;
-    }
-
 }

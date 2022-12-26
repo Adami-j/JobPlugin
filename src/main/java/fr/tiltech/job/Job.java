@@ -72,4 +72,9 @@ public class Job extends JavaPlugin {
         }
     }
 
+
+    public ArrayList<String> getJobs() {
+        return new ArrayList<>(this.getConfig().getConfigurationSection("jobs").getKeys(false));
+    }
+
 }

@@ -26,7 +26,7 @@ public class PlayerInteract implements Listener {
         this.plugin = plugin;
     }
 
-    @EventHandler
+    /*@EventHandler
     public void onInteract(PlayerInteractEvent e){
         Player player = e.getPlayer();
         Action action = e.getAction();
@@ -44,7 +44,7 @@ public class PlayerInteract implements Listener {
                 itemMeta.setLore(listTmp);
                 boussole1.setItemMeta(itemMeta);
                 gui.addItem(boussole1);
-            }*/
+            }
             player.openInventory(gui);
 
 
@@ -83,5 +83,5 @@ public class PlayerInteract implements Listener {
             }
         }
 
-    }
+    }*/
 }

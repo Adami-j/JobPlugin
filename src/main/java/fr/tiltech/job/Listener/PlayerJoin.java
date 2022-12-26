@@ -1,6 +1,7 @@
 package fr.tiltech.job.Listener;
 
 import fr.tiltech.job.Command.JobCommand;
+import fr.tiltech.job.Config.Config;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
@@ -42,6 +43,14 @@ public class PlayerJoin implements Listener {
             }
         } else {
             p.sendMessage("§cHello operator. You already have a §ojob.");
+        }
+
+        if (!plugin.getJobs().isEmpty()) {
+            for (String s : plugin.getJobs()) {
+                p.sendMessage(s + "test");
+            }
+        } else {
+            p.sendMessage("Le truc est vide");
         }
 
 
