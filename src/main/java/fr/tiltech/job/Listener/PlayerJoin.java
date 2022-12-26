@@ -8,6 +8,7 @@ import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 
 import net.md_5.bungee.api.chat.hover.content.Text;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -18,10 +19,18 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import fr.tiltech.job.Job;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.ScoreboardManager;
+import org.bukkit.scoreboard.Team;
 
 public class PlayerJoin implements Listener {
 
     private static Job plugin;
+
+    public PlayerJoin(Job plugin) {
+        this.plugin = plugin;
+    }
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
@@ -33,6 +42,12 @@ public class PlayerJoin implements Listener {
             }
         } else {
             p.sendMessage("§cHello operator. You already have a §ojob.");
+        }
+
+
+
+        if(!plugin.getCustomConfig().contains("players."+p.getName())) {
+            plugin.getCustomConfig().set("players."+p.getName(), p.getName());
         }
     }
 }

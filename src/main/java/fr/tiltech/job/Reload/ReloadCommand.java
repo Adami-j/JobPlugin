@@ -8,12 +8,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class ReloadCommand extends JavaPlugin implements CommandExecutor {
 
-    private final Job plugin;
-
-    public ReloadCommand(Job plugin) {
-        this.plugin = plugin;
-    }
-
     /**
      * Executes the given command, returning its success.
      * <br>
@@ -28,11 +22,6 @@ public class ReloadCommand extends JavaPlugin implements CommandExecutor {
      */
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (command.getName().equalsIgnoreCase("jpr")) {
-            plugin.reloadConfig();
-            sender.sendMessage("§aJobplugin Reloaded.");
-            return true;
-        }
         return false;
     }
 }
