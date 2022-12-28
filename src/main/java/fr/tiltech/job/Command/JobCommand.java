@@ -12,16 +12,20 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionAttachment;
+import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.java.JavaPlugin;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.checkerframework.checker.units.qual.C;
 
 import java.awt.*;
+import java.security.Permissions;
 import java.util.*;
 import java.util.List;
 
@@ -57,26 +61,45 @@ public class JobCommand implements CommandExecutor {
         if (command.getName().equalsIgnoreCase("job")) {
             if (sender instanceof Player) {
                 Player p = (Player) sender;
-                PermissionAttachment attachment = p.addAttachment(plugin);
+
                 if (args.length == 0) {
                     p.sendMessage("" + ChatColor.BOLD + ChatColor.RED + "You must specify a job.");
                     return true;
                 }
+
                 if (args.length == 1) {
-                    if (!p.hasPermission("jobplugin.job."+args[0])) {
-                        p.sendMessage("§4» §c§lCongratulations! §r§7You're now a "+ChatColor.GREEN+args[0]);
-                        attachment.setPermission("jobplugin.job."+args[0], true);
-                    } else {
-                        p.sendMessage("§c§lSorry! §r§cYou already have a job.");
+                    /*boolean hasPerm = false;
+                    for (String s : plugin.getConfig().getConfigurationSection("jobs").getKeys(false)) {
+                        Map<String, Boolean> ps = attachment.getPermissions();
+                        if (ps.containsValue("jobplugin.job."+s.toLowerCase())) {
+                            if (s.equalsIgnoreCase(args[0])) {
+                                hasPerm = true;
+                                return true;
+                            }
+                            p.sendMessage("§c§lSorry! §r§4You already have this job.");
+                        } else {
+                            p.sendMessage("§4» §c§lCongratulations! §r§7You're now a " + ChatColor.GREEN + args[0]);
+                            attachment.setPermission("jobplugin.job." + args[0].toLowerCase(), true);
+                            p.sendMessage(args[0].toLowerCase());
+                        }
+                        return true;
                     }
+                    return true;*/
+                    if (p.hasPermission("test")) {
+                        p.sendMessage("Yep");
+                    } else {
+                        p.sendMessage("...");
+                    }
+
                 }
+
                 if (args.length >= 2) {
                     p.sendMessage("" + ChatColor.BOLD + ChatColor.RED + "Too much arguments.");
                     return true;
                 }
                 return true;
             }
-            return true;
+            return false;
         }
 
         if (command.getName().equalsIgnoreCase("jobs")) {
@@ -135,7 +158,7 @@ public class JobCommand implements CommandExecutor {
     }
 
     public double getMaxValue(String str) {
-        return plugin.getConfig().getInt("jobs."+str+".max_value");
+        return plugin.getConfig().getInt("jobs." + str + ".max_value");
     }
 
 }

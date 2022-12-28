@@ -45,16 +45,6 @@ public class PlayerJoin implements Listener {
             p.sendMessage("§cHello operator. You already have a §ojob.");
         }
 
-        if (!plugin.getJobs().isEmpty()) {
-            for (String s : plugin.getJobs()) {
-                p.sendMessage(s + "test");
-            }
-        } else {
-            p.sendMessage("Le truc est vide");
-        }
-
-
-
         if(!plugin.getCustomConfig().contains("players."+p.getName())) {
             plugin.getCustomConfig().set("players."+p.getName(), p.getName());
         }

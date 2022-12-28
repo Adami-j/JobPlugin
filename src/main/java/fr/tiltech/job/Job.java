@@ -2,23 +2,26 @@ package fr.tiltech.job;
 
 import fr.tiltech.job.Command.JobCommand;
 import fr.tiltech.job.Listener.PlayerInteract;
+import fr.tiltech.job.Listener.PlayerJoin;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.plugin.java.JavaPlugin;
-import fr.tiltech.job.Listener.PlayerJoin;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class Job extends JavaPlugin {
     FileConfiguration config = getConfig();
     FileConfiguration customConfig;
     File customConfigFile;
-
     private static boolean papiEnabled = false;
     @Override
     public void onEnable() {
@@ -35,6 +38,7 @@ public class Job extends JavaPlugin {
         getCommand("jobs").setExecutor(new JobCommand(this));
         getCommand("infolvl").setExecutor(new JobCommand(this));
         getCommand("warptool").setExecutor(new JobCommand(this));
+        //getCommand("perms").setExecutor(new OpCommand(this));
         /*for (String string : this.getConfig().getConfigurationSection("jobs").getKeys(false)) {
             .add(this.getConfig().getConfigurationSection("jobs").getString(string + ".name"));
         }*/
