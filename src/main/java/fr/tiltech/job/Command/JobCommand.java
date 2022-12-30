@@ -1,7 +1,6 @@
 package fr.tiltech.job.Command;
 
 import fr.tiltech.job.Job;
-import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.hover.content.Text;
@@ -12,23 +11,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.permissions.Permission;
-import org.bukkit.permissions.PermissionAttachment;
-import org.bukkit.permissions.PermissionAttachmentInfo;
-import org.bukkit.plugin.java.JavaPlugin;
 import net.md_5.bungee.api.chat.TextComponent;
-import org.checkerframework.checker.units.qual.C;
-
-import java.awt.*;
-import java.security.Permissions;
 import java.util.*;
 import java.util.List;
 
@@ -80,7 +67,7 @@ public class JobCommand implements CommandExecutor, JobCommandInterface {
                                         p.sendMessage("§c§lCongratulations! §r§7You are now a §o" + job + "§r§7!");
                                         plugin.getServer().getConsoleSender().sendMessage("§c§l" + p.getName() + " §r§7is now a §o" + job + "§r§7!");
                                         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set jobplugin.job." + job.toLowerCase() + " true");
-                                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set prefix.0.\"" + getPrefix(job) +"\"");
+                                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set \"prefix.0." + getPrefix(job)+"\"");
                                         return true;
                                     }
                                     if (playerHasJob(p)) {
