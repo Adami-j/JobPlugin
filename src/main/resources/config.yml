@@ -26,22 +26,123 @@ jobs:
     min_value: 0.12
     max_value: 0.22
     prefix: "&8[&7Miner&8] &7"
+    elements:
+      - COAL_ORE
+      - IRON_ORE
+      - GOLD_ORE
+      - LAPIS_ORE
+      - REDSTONE_ORE
+      - EMERALD_ORE
+      - DIAMOND_ORE
+      - QUARTZ_ORE
+      - NETHER_QUARTZ_ORE
+      - NETHER_GOLD_ORE
+      - ANCIENT_DEBRIS
+      - DEEPSLATE_COAL_ORE
+      - DEEPSLATE_IRON_ORE
+      - DEEPSLATE_GOLD_ORE
+      - DEEPSLATE_LAPIS_ORE
+      - DEEPSLATE_REDSTONE_ORE
+      - DEEPSLATE_EMERALD_ORE
+      - DEEPSLATE_DIAMOND_ORE
+      - DEEPSLATE_QUARTZ_ORE
+      - DEEPSLATE_NETHER_QUARTZ_ORE
+      - DEEPSLATE_NETHER_GOLD_ORE
+      - DEEPSLATE_ANCIENT_DEBRIS
   fighter:
     name: Fighter
     salary: 1000
     min_value: 0.15
     max_value: 0.20
     prefix: "&4[&cFighter&4] &c"
+    elements:
+      - ZOMBIE
+      - SKELETON
+      - SPIDER
+      - CAVE_SPIDER
+      - CREEPER
+      - ENDERMAN
+      - WITHER_SKELETON
+      - WITHER
+      - WITHER_SKULL
+      - WITHER_SKELETON_SKULL
+      - WITHER_SKELETON_WALL_SKULL
+      - ENDER_DRAGON
   farmer:
     name: Farmer
     salary: 1050
     min_value: 0.13
     max_value: 0.18
     prefix: "&2[&aFarmer&2] &a"
+    elements:
+      - WHEAT
+      - CARROTS
+      - POTATOES
+      - BEETROOTS
+      - MELON
+      - PUMPKIN
+      - SUGAR_CANE
+      - CACTUS
+      - BAMBOO
+      - KELP
+      - CHORUS_FLOWER
+      - CHORUS_PLANT
+      - NETHER_WART
+      - WARPED_FUNGUS
+      - CRIMSON_FUNGUS
+      - WARPED_ROOTS
+      - CRIMSON_ROOTS
+      - WARPED_WART_BLOCK
+      - WARPED_NYLIUM
+      - CRIMSON_NYLIUM
+      - WARPED_WART
+      - WARPED_STEM
+      - CRIMSON_STEM
   chemist:
     name: Chemist
     salary: 1100
     min_value: 0.19
     max_value: 0.34
     prefix: "&9[&bChemist&9] &b"
+    elements:
+      - minecraft:mundane
+      - minecraft:thick
+      - minecraft:awkward
+      - minecraft:night_vision
+      - minecraft:long_night_vision
+      - minecraft:invisibility
+      - minecraft:long_invisibility
+      - minecraft:leaping
+      - minecraft:long_leaping
+      - minecraft:strong_leaping
+      - minecraft:fire_resistance
+      - minecraft:long_fire_resistance
+      - minecraft:swiftness
+      - minecraft:long_swiftness
+      - minecraft:strong_swiftness
+      - minecraft:slowness
+      - minecraft:long_slowness
+      - minecraft:water_breathing
+      - minecraft:long_water_breathing
+      - minecraft:healing
+      - minecraft:strong_healing
+      - minecraft:harming
+      - minecraft:strong_harming
+      - minecraft:poison
+      - minecraft:long_poison
+      - minecraft:strong_poison
+      - minecraft:regeneration
+      - minecraft:long_regeneration
+      - minecraft:strong_regeneration
+      - minecraft:strength
+      - minecraft:long_strength
+      - minecraft:strong_strength
+      - minecraft:weakness
+      - minecraft:long_weakness
+      - minecraft:luck
+      - minecraft:slow_falling
+      - minecraft:long_slow_falling
+      - minecraft:turtle_master
+      - minecraft:long_turtle_master
+      - minecraft:strong_turtle_master
 

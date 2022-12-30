@@ -1,9 +1,9 @@
 package fr.tiltech.job;
 
 import fr.tiltech.job.Command.JobCommand;
+import fr.tiltech.job.Command.ReloadCommand;
 import fr.tiltech.job.Listener.PlayerInteract;
 import fr.tiltech.job.Listener.PlayerJoin;
-import fr.tiltech.job.Reload.ReloadCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.ConsoleCommandSender;
