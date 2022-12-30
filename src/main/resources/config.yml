@@ -25,19 +25,23 @@ jobs:
     salary: 1200
     min_value: 0.12
     max_value: 0.22
+    prefix: "&8[&7Miner&8] &7"
   fighter:
     name: Fighter
     salary: 1000
     min_value: 0.15
     max_value: 0.20
+    prefix: "&4[&cFighter&4] &c"
   farmer:
     name: Farmer
     salary: 1050
     min_value: 0.13
     max_value: 0.18
+    prefix: "&2[&aFarmer&2] &a"
   chemist:
     name: Chemist
     salary: 1100
     min_value: 0.19
     max_value: 0.34
+    prefix: "&9[&bChemist&9] &b"
 

@@ -73,17 +73,18 @@ public class JobCommand implements CommandExecutor, JobCommandInterface {
 
                 if (args.length == 1) {
                     if (!p.isOp()) {
-                        if (plugin.getJobs().contains(args[0])) {
-                            for (String s : plugin.getJobs()) {
-                                if (s.equalsIgnoreCase(args[0])) {
-                                    if(!playerHasJob(p)) {
-                                        p.sendMessage("§c§lCongratulations! §r§7You are now a §o" + s + "§r§7!");
-                                        plugin.getServer().getConsoleSender().sendMessage("§c§l" + p.getName() + " §r§7is now a §o" + s + "§r§7!");
-                                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set jobplugin.job." + s.toLowerCase() + " true");
+                        if (jobExist(args[0])) {
+                            for (String job : plugin.getJobs()) {
+                                if (job.equalsIgnoreCase(args[0])) {
+                                    if (!playerHasJob(p)) {
+                                        p.sendMessage("§c§lCongratulations! §r§7You are now a §o" + job + "§r§7!");
+                                        plugin.getServer().getConsoleSender().sendMessage("§c§l" + p.getName() + " §r§7is now a §o" + job + "§r§7!");
+                                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set jobplugin.job." + job.toLowerCase() + " true");
+                                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set prefix.0.\"" + getPrefix(job) +"\"");
                                         return true;
                                     }
                                     if (playerHasJob(p)) {
-                                        if (playerHasJob(p, s)) {
+                                        if (playerHasJob(p, job)) {
                                             sendErrorMessage(p, "You already have this job!");
                                             return true;
                                         }
@@ -98,6 +99,7 @@ public class JobCommand implements CommandExecutor, JobCommandInterface {
                         }
                     } else {
                         p.sendMessage("" + ChatColor.BOLD + ChatColor.RED + "You are OP. You cannot have a job.");
+                        return true;
                     }
                     return true;
                 }
@@ -159,15 +161,19 @@ public class JobCommand implements CommandExecutor, JobCommandInterface {
     }
 
     public int getSalary(String str) {
-        return plugin.getConfig().getInt("jobs."+str+".salary");
+        return plugin.getConfig().getInt("jobs."+ str +".salary");
     }
 
     public double getMinValue(String str) {
-        return plugin.getConfig().getInt("jobs."+str+".min_value");
+        return plugin.getConfig().getInt("jobs."+ str +".min_value");
     }
 
     public double getMaxValue(String str) {
         return plugin.getConfig().getInt("jobs." + str + ".max_value");
+    }
+
+    public String getPrefix(String str) {
+        return plugin.getConfig().getString("jobs."+ str +".prefix");
     }
 
     public void sendErrorMessage(Player p, String s) {
@@ -187,5 +193,11 @@ public class JobCommand implements CommandExecutor, JobCommandInterface {
         return p.hasPermission("jobplugin.job." + job.toLowerCase());
     }
 
+    public boolean jobExist(String job) {
+        for (String s : plugin.getJobs()) {
+            if (s.equalsIgnoreCase(job)) return true;
+        }
+        return false;
+    }
 
 }
