@@ -3,12 +3,15 @@ package fr.tiltech.job;
 import fr.tiltech.job.Command.JobCommand;
 import fr.tiltech.job.Listener.PlayerInteract;
 import fr.tiltech.job.Listener.PlayerJoin;
+import fr.tiltech.job.Reload.ReloadCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.permissions.PermissionAttachment;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -23,6 +26,11 @@ public class Job extends JavaPlugin {
     FileConfiguration customConfig;
     File customConfigFile;
     private static boolean papiEnabled = false;
+
+    public static Job getInstance() {
+        return getPlugin(Job.class);
+    }
+
     @Override
     public void onEnable() {
         // Enable Configuration
@@ -36,13 +44,10 @@ public class Job extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlayerInteract(this), this);
         getCommand("job").setExecutor(new JobCommand(this));
         getCommand("jobs").setExecutor(new JobCommand(this));
-        getCommand("infolvl").setExecutor(new JobCommand(this));
-        getCommand("warptool").setExecutor(new JobCommand(this));
+        //getCommand("infolvl").setExecutor(new JobCommand(this));
+        //getCommand("warptool").setExecutor(new JobCommand(this));
         //getCommand("perms").setExecutor(new OpCommand(this));
-        /*for (String string : this.getConfig().getConfigurationSection("jobs").getKeys(false)) {
-            .add(this.getConfig().getConfigurationSection("jobs").getString(string + ".name"));
-        }*/
-        //getCommand("jpr").setExecutor(new ReloadCommand(this));
+        getCommand("jp").setExecutor(new ReloadCommand(this));
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             this.getLogger().info("PlaceholderAPI detected.");

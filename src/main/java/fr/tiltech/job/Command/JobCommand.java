@@ -5,11 +5,14 @@ import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.hover.content.Text;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -29,7 +32,7 @@ import java.security.Permissions;
 import java.util.*;
 import java.util.List;
 
-public class JobCommand implements CommandExecutor {
+public class JobCommand implements CommandExecutor, JobCommandInterface {
 
     private final Job plugin;
     public JobCommand(Job plugin) {
@@ -42,7 +45,7 @@ public class JobCommand implements CommandExecutor {
             ChatColor.YELLOW,
             ChatColor.LIGHT_PURPLE));
 
-    private ArrayList<String> jobs = new ArrayList<>();
+    private final ConsoleCommandSender console = Bukkit.getConsoleSender();
 
     /**
      * Executes the given command, returning its success.
@@ -60,41 +63,47 @@ public class JobCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("job")) {
             if (sender instanceof Player) {
+
                 Player p = (Player) sender;
 
                 if (args.length == 0) {
-                    p.sendMessage("" + ChatColor.BOLD + ChatColor.RED + "You must specify a job.");
+                    sendErrorMessage(p, "You must specify a job.");
                     return true;
                 }
 
                 if (args.length == 1) {
-                    /*boolean hasPerm = false;
-                    for (String s : plugin.getConfig().getConfigurationSection("jobs").getKeys(false)) {
-                        Map<String, Boolean> ps = attachment.getPermissions();
-                        if (ps.containsValue("jobplugin.job."+s.toLowerCase())) {
-                            if (s.equalsIgnoreCase(args[0])) {
-                                hasPerm = true;
-                                return true;
+                    if (!p.isOp()) {
+                        if (plugin.getJobs().contains(args[0])) {
+                            for (String s : plugin.getJobs()) {
+                                if (s.equalsIgnoreCase(args[0])) {
+                                    if(!playerHasJob(p)) {
+                                        p.sendMessage("§c§lCongratulations! §r§7You are now a §o" + s + "§r§7!");
+                                        plugin.getServer().getConsoleSender().sendMessage("§c§l" + p.getName() + " §r§7is now a §o" + s + "§r§7!");
+                                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set jobplugin.job." + s.toLowerCase() + " true");
+                                        return true;
+                                    }
+                                    if (playerHasJob(p)) {
+                                        if (playerHasJob(p, s)) {
+                                            sendErrorMessage(p, "You already have this job!");
+                                            return true;
+                                        }
+                                        sendErrorMessage(p, "You already have a job.");
+                                        return true;
+                                    }
+                                }
                             }
-                            p.sendMessage("§c§lSorry! §r§4You already have this job.");
                         } else {
-                            p.sendMessage("§4» §c§lCongratulations! §r§7You're now a " + ChatColor.GREEN + args[0]);
-                            attachment.setPermission("jobplugin.job." + args[0].toLowerCase(), true);
-                            p.sendMessage(args[0].toLowerCase());
+                            sendErrorMessage(p, "This job doesn't exist.");
+                            return true;
                         }
-                        return true;
-                    }
-                    return true;*/
-                    if (p.hasPermission("test")) {
-                        p.sendMessage("Yep");
                     } else {
-                        p.sendMessage("...");
+                        p.sendMessage("" + ChatColor.BOLD + ChatColor.RED + "You are OP. You cannot have a job.");
                     }
-
+                    return true;
                 }
 
                 if (args.length >= 2) {
-                    p.sendMessage("" + ChatColor.BOLD + ChatColor.RED + "Too much arguments.");
+                    sendErrorMessage(p, "Too many arguments.");
                     return true;
                 }
                 return true;
@@ -160,5 +169,23 @@ public class JobCommand implements CommandExecutor {
     public double getMaxValue(String str) {
         return plugin.getConfig().getInt("jobs." + str + ".max_value");
     }
+
+    public void sendErrorMessage(Player p, String s) {
+        p.sendMessage("§c[Error] "+s);
+    }
+
+    @Override
+    public boolean playerHasJob(Player p) {
+        for (String s : plugin.getJobs()) {
+            if (p.hasPermission("jobplugin.job."+s.toLowerCase())) return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean playerHasJob(Player p, String job) {
+        return p.hasPermission("jobplugin.job." + job.toLowerCase());
+    }
+
 
 }

@@ -6,9 +6,10 @@ description: Plugin job
 commands:
   test:
     description: Test command
-  jpr:
+  jp:
     description: reload plugin
     permission: jobplugin.reload
+    usage: /<command> reload
   jobs:
     description: show all available jobs
     permission: jobplugin.jobs
@@ -17,3 +18,4 @@ commands:
   job:
     description: use this command with an argument (a job)
     permission: jobplugin.job
+    usage: /<command> <job>
